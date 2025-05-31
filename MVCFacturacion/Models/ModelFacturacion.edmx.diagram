@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="69fea55ed6ce4d019c99b9d4ac7f01fc" Name="Diagram1">
+        <EntityTypeShape EntityType="ModelFacturas.TBLCATEGORIA_PROD" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelFacturas.TBLCLIENTES" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelFacturas.TBLDETALLE_FACTURA" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelFacturas.TBLEMPLEADO" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelFacturas.TBLESTADO_FACTURA" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelFacturas.TBLFACTURA" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelFacturas.TBLPRODUCTO" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelFacturas.TBLROLES" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelFacturas.TBLSEGURIDAD" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="ModelFacturas.FK__TBLPRODUC__IdCat__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="ModelFacturas.FK_TBLFACTURA_TBLCLIENTES" ManuallyRouted="false" />
+        <AssociationConnector Association="ModelFacturas.FK_TBLDETALLE_FACTURA_TBLFACTURA" ManuallyRouted="false" />
+        <AssociationConnector Association="ModelFacturas.FK_TBLDETALLE_FACTURA_TBLPRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="ModelFacturas.FK_TBLEMPLEADO_TBLROLES" ManuallyRouted="false" />
+        <AssociationConnector Association="ModelFacturas.FK_TBLFACTURA_TBLEMPLEADO" ManuallyRouted="false" />
+        <AssociationConnector Association="ModelFacturas.FK_TBLSEGURIDAD_TBLEMPLEADO" ManuallyRouted="false" />
+        <AssociationConnector Association="ModelFacturas.FK_TBLFACTURA_TBLESTADO_FACTURA" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

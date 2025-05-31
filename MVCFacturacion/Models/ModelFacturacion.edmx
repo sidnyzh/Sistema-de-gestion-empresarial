@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ModelFacturas.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBLCATEGORIA_PROD">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StrDescripcion" Type="varchar" MaxLength="60" />
+          <Property Name="DtmFechaModifica" Type="datetime" />
+          <Property Name="StrUsuarioModifico" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="TBLCLIENTES">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StrNombre" Type="varchar" MaxLength="55" />
+          <Property Name="NumDocumento" Type="bigint" />
+          <Property Name="StrDireccion" Type="varchar" MaxLength="70" />
+          <Property Name="StrTelefono" Type="varchar" MaxLength="30" />
+          <Property Name="StrEmail" Type="varchar" MaxLength="50" />
+          <Property Name="DtmFechaModifica" Type="datetime" />
+          <Property Name="StrUsuarioModifica" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="TBLDETALLE_FACTURA">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFactura" Type="int" Nullable="false" />
+          <Property Name="NumCantidad" Type="int" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="NumPrecio" Type="float" />
+        </EntityType>
+        <EntityType Name="TBLEMPLEADO">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strNombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumDocumento" Type="bigint" Nullable="false" />
+          <Property Name="StrDireccion" Type="varchar" MaxLength="100" />
+          <Property Name="StrTelefono" Type="varchar" MaxLength="50" />
+          <Property Name="StrEmail" Type="varchar" MaxLength="50" />
+          <Property Name="IdRolEmpleado" Type="int" />
+          <Property Name="DtmIngreso" Type="datetime" />
+          <Property Name="DtmRetiro" Type="datetime" />
+          <Property Name="strDatosAdicionales" Type="nvarchar(max)" />
+          <Property Name="DtmFechaModifica" Type="datetime" />
+          <Property Name="StrUsuarioModifico" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLESTADO_FACTURA">
+          <Key>
+            <PropertyRef Name="IdEstadoFactura" />
+          </Key>
+          <Property Name="IdEstadoFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StrDescripcion" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TBLFACTURA">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DtmFecha" Type="datetime" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="IdEmpleado" Type="int" Nullable="false" />
+          <Property Name="NumDescuento" Type="float" />
+          <Property Name="NumImpuesto" Type="float" />
+          <Property Name="NumValorTotal" Type="float" />
+          <Property Name="IdEstado" Type="int" />
+          <Property Name="DtmFechaModifica" Type="datetime" />
+          <Property Name="StrUsuarioModifica" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="TBLPRODUCTO">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StrNombre" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="StrCodigo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NumPrecioCompra" Type="float" Nullable="false" />
+          <Property Name="NumPrecioVenta" Type="float" Nullable="false" />
+          <Property Name="IdCategoria" Type="int" Nullable="false" />
+          <Property Name="StrDetalle" Type="varchar" MaxLength="50" />
+          <Property Name="strFoto" Type="varchar" MaxLength="50" />
+          <Property Name="NumStock" Type="int" />
+          <Property Name="DtmFechaModifica" Type="datetime" Nullable="false" />
+          <Property Name="StrUsuarioModifica" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBLROLES">
+          <Key>
+            <PropertyRef Name="IdRolEmpleado" />
+          </Key>
+          <Property Name="IdRolEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StrDescripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLSEGURIDAD">
+          <Key>
+            <PropertyRef Name="IdSeguridad" />
+          </Key>
+          <Property Name="IdSeguridad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEmpleado" Type="int" Nullable="false" />
+          <Property Name="StrUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="StrClave" Type="varchar" MaxLength="50" />
+          <Property Name="DtmFechaModifica" Type="datetime" />
+          <Property Name="StrUsuarioModifico" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__TBLPRODUC__IdCat__440B1D61">
+          <End Role="TBLCATEGORIA_PROD" Type="Self.TBLCATEGORIA_PROD" Multiplicity="1" />
+          <End Role="TBLPRODUCTO" Type="Self.TBLPRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCATEGORIA_PROD">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="TBLPRODUCTO">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLDETALLE_FACTURA_TBLFACTURA">
+          <End Role="TBLFACTURA" Type="Self.TBLFACTURA" Multiplicity="1" />
+          <End Role="TBLDETALLE_FACTURA" Type="Self.TBLDETALLE_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLFACTURA">
+              <PropertyRef Name="IdFactura" />
+            </Principal>
+            <Dependent Role="TBLDETALLE_FACTURA">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLDETALLE_FACTURA_TBLPRODUCTO">
+          <End Role="TBLPRODUCTO" Type="Self.TBLPRODUCTO" Multiplicity="1" />
+          <End Role="TBLDETALLE_FACTURA" Type="Self.TBLDETALLE_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLPRODUCTO">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="TBLDETALLE_FACTURA">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLEMPLEADO_TBLROLES">
+          <End Role="TBLROLES" Type="Self.TBLROLES" Multiplicity="0..1" />
+          <End Role="TBLEMPLEADO" Type="Self.TBLEMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLROLES">
+              <PropertyRef Name="IdRolEmpleado" />
+            </Principal>
+            <Dependent Role="TBLEMPLEADO">
+              <PropertyRef Name="IdRolEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLFACTURA_TBLCLIENTES">
+          <End Role="TBLCLIENTES" Type="Self.TBLCLIENTES" Multiplicity="1" />
+          <End Role="TBLFACTURA" Type="Self.TBLFACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCLIENTES">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="TBLFACTURA">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLFACTURA_TBLEMPLEADO">
+          <End Role="TBLEMPLEADO" Type="Self.TBLEMPLEADO" Multiplicity="1" />
+          <End Role="TBLFACTURA" Type="Self.TBLFACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLEMPLEADO">
+              <PropertyRef Name="IdEmpleado" />
+            </Principal>
+            <Dependent Role="TBLFACTURA">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLFACTURA_TBLESTADO_FACTURA">
+          <End Role="TBLESTADO_FACTURA" Type="Self.TBLESTADO_FACTURA" Multiplicity="0..1" />
+          <End Role="TBLFACTURA" Type="Self.TBLFACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLESTADO_FACTURA">
+              <PropertyRef Name="IdEstadoFactura" />
+            </Principal>
+            <Dependent Role="TBLFACTURA">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSEGURIDAD_TBLEMPLEADO">
+          <End Role="TBLEMPLEADO" Type="Self.TBLEMPLEADO" Multiplicity="1" />
+          <End Role="TBLSEGURIDAD" Type="Self.TBLSEGURIDAD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLEMPLEADO">
+              <PropertyRef Name="IdEmpleado" />
+            </Principal>
+            <Dependent Role="TBLSEGURIDAD">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelFacturasStoreContainer">
+          <EntitySet Name="TBLCATEGORIA_PROD" EntityType="Self.TBLCATEGORIA_PROD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLCLIENTES" EntityType="Self.TBLCLIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLDETALLE_FACTURA" EntityType="Self.TBLDETALLE_FACTURA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLEMPLEADO" EntityType="Self.TBLEMPLEADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLESTADO_FACTURA" EntityType="Self.TBLESTADO_FACTURA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLFACTURA" EntityType="Self.TBLFACTURA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLPRODUCTO" EntityType="Self.TBLPRODUCTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLROLES" EntityType="Self.TBLROLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLSEGURIDAD" EntityType="Self.TBLSEGURIDAD" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TBLPRODUC__IdCat__440B1D61" Association="Self.FK__TBLPRODUC__IdCat__440B1D61">
+            <End Role="TBLCATEGORIA_PROD" EntitySet="TBLCATEGORIA_PROD" />
+            <End Role="TBLPRODUCTO" EntitySet="TBLPRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLDETALLE_FACTURA_TBLFACTURA" Association="Self.FK_TBLDETALLE_FACTURA_TBLFACTURA">
+            <End Role="TBLFACTURA" EntitySet="TBLFACTURA" />
+            <End Role="TBLDETALLE_FACTURA" EntitySet="TBLDETALLE_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLDETALLE_FACTURA_TBLPRODUCTO" Association="Self.FK_TBLDETALLE_FACTURA_TBLPRODUCTO">
+            <End Role="TBLPRODUCTO" EntitySet="TBLPRODUCTO" />
+            <End Role="TBLDETALLE_FACTURA" EntitySet="TBLDETALLE_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLEMPLEADO_TBLROLES" Association="Self.FK_TBLEMPLEADO_TBLROLES">
+            <End Role="TBLROLES" EntitySet="TBLROLES" />
+            <End Role="TBLEMPLEADO" EntitySet="TBLEMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLFACTURA_TBLCLIENTES" Association="Self.FK_TBLFACTURA_TBLCLIENTES">
+            <End Role="TBLCLIENTES" EntitySet="TBLCLIENTES" />
+            <End Role="TBLFACTURA" EntitySet="TBLFACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLFACTURA_TBLEMPLEADO" Association="Self.FK_TBLFACTURA_TBLEMPLEADO">
+            <End Role="TBLEMPLEADO" EntitySet="TBLEMPLEADO" />
+            <End Role="TBLFACTURA" EntitySet="TBLFACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLFACTURA_TBLESTADO_FACTURA" Association="Self.FK_TBLFACTURA_TBLESTADO_FACTURA">
+            <End Role="TBLESTADO_FACTURA" EntitySet="TBLESTADO_FACTURA" />
+            <End Role="TBLFACTURA" EntitySet="TBLFACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSEGURIDAD_TBLEMPLEADO" Association="Self.FK_TBLSEGURIDAD_TBLEMPLEADO">
+            <End Role="TBLEMPLEADO" EntitySet="TBLEMPLEADO" />
+            <End Role="TBLSEGURIDAD" EntitySet="TBLSEGURIDAD" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModelFacturas" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBLCATEGORIA_PROD">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StrDescripcion" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="DtmFechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="StrUsuarioModifico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLPRODUCTO" Relationship="Self.FK__TBLPRODUC__IdCat__440B1D61" FromRole="TBLCATEGORIA_PROD" ToRole="TBLPRODUCTO" />
+        </EntityType>
+        <EntityType Name="TBLCLIENTES">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StrNombre" Type="String" MaxLength="55" FixedLength="false" Unicode="false" />
+          <Property Name="NumDocumento" Type="Int64" />
+          <Property Name="StrDireccion" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="StrTelefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="StrEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DtmFechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="StrUsuarioModifica" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLFACTURA" Relationship="Self.FK_TBLFACTURA_TBLCLIENTES" FromRole="TBLCLIENTES" ToRole="TBLFACTURA" />
+        </EntityType>
+        <EntityType Name="TBLDETALLE_FACTURA">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFactura" Type="Int32" Nullable="false" />
+          <Property Name="NumCantidad" Type="Int32" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="NumPrecio" Type="Double" />
+          <NavigationProperty Name="TBLFACTURA" Relationship="Self.FK_TBLDETALLE_FACTURA_TBLFACTURA" FromRole="TBLDETALLE_FACTURA" ToRole="TBLFACTURA" />
+          <NavigationProperty Name="TBLPRODUCTO" Relationship="Self.FK_TBLDETALLE_FACTURA_TBLPRODUCTO" FromRole="TBLDETALLE_FACTURA" ToRole="TBLPRODUCTO" />
+        </EntityType>
+        <EntityType Name="TBLEMPLEADO">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumDocumento" Type="Int64" Nullable="false" />
+          <Property Name="StrDireccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StrTelefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StrEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdRolEmpleado" Type="Int32" />
+          <Property Name="DtmIngreso" Type="DateTime" Precision="3" />
+          <Property Name="DtmRetiro" Type="DateTime" Precision="3" />
+          <Property Name="strDatosAdicionales" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DtmFechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="StrUsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLROLES" Relationship="Self.FK_TBLEMPLEADO_TBLROLES" FromRole="TBLEMPLEADO" ToRole="TBLROLES" />
+          <NavigationProperty Name="TBLFACTURA" Relationship="Self.FK_TBLFACTURA_TBLEMPLEADO" FromRole="TBLEMPLEADO" ToRole="TBLFACTURA" />
+          <NavigationProperty Name="TBLSEGURIDAD" Relationship="Self.FK_TBLSEGURIDAD_TBLEMPLEADO" FromRole="TBLEMPLEADO" ToRole="TBLSEGURIDAD" />
+        </EntityType>
+        <EntityType Name="TBLESTADO_FACTURA">
+          <Key>
+            <PropertyRef Name="IdEstadoFactura" />
+          </Key>
+          <Property Name="IdEstadoFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StrDescripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLFACTURA" Relationship="Self.FK_TBLFACTURA_TBLESTADO_FACTURA" FromRole="TBLESTADO_FACTURA" ToRole="TBLFACTURA" />
+        </EntityType>
+        <EntityType Name="TBLFACTURA">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DtmFecha" Type="DateTime" Precision="3" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="NumDescuento" Type="Double" />
+          <Property Name="NumImpuesto" Type="Double" />
+          <Property Name="NumValorTotal" Type="Double" />
+          <Property Name="IdEstado" Type="Int32" />
+          <Property Name="DtmFechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="StrUsuarioModifica" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLCLIENTES" Relationship="Self.FK_TBLFACTURA_TBLCLIENTES" FromRole="TBLFACTURA" ToRole="TBLCLIENTES" />
+          <NavigationProperty Name="TBLDETALLE_FACTURA" Relationship="Self.FK_TBLDETALLE_FACTURA_TBLFACTURA" FromRole="TBLFACTURA" ToRole="TBLDETALLE_FACTURA" />
+          <NavigationProperty Name="TBLEMPLEADO" Relationship="Self.FK_TBLFACTURA_TBLEMPLEADO" FromRole="TBLFACTURA" ToRole="TBLEMPLEADO" />
+          <NavigationProperty Name="TBLESTADO_FACTURA" Relationship="Self.FK_TBLFACTURA_TBLESTADO_FACTURA" FromRole="TBLFACTURA" ToRole="TBLESTADO_FACTURA" />
+        </EntityType>
+        <EntityType Name="TBLPRODUCTO">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StrNombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StrCodigo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumPrecioCompra" Type="Double" Nullable="false" />
+          <Property Name="NumPrecioVenta" Type="Double" Nullable="false" />
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+          <Property Name="StrDetalle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strFoto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumStock" Type="Int32" />
+          <Property Name="DtmFechaModifica" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StrUsuarioModifica" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TBLCATEGORIA_PROD" Relationship="Self.FK__TBLPRODUC__IdCat__440B1D61" FromRole="TBLPRODUCTO" ToRole="TBLCATEGORIA_PROD" />
+          <NavigationProperty Name="TBLDETALLE_FACTURA" Relationship="Self.FK_TBLDETALLE_FACTURA_TBLPRODUCTO" FromRole="TBLPRODUCTO" ToRole="TBLDETALLE_FACTURA" />
+        </EntityType>
+        <EntityType Name="TBLROLES">
+          <Key>
+            <PropertyRef Name="IdRolEmpleado" />
+          </Key>
+          <Property Name="IdRolEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StrDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLEMPLEADO" Relationship="Self.FK_TBLEMPLEADO_TBLROLES" FromRole="TBLROLES" ToRole="TBLEMPLEADO" />
+        </EntityType>
+        <EntityType Name="TBLSEGURIDAD">
+          <Key>
+            <PropertyRef Name="IdSeguridad" />
+          </Key>
+          <Property Name="IdSeguridad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="StrUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StrClave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DtmFechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="StrUsuarioModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLEMPLEADO" Relationship="Self.FK_TBLSEGURIDAD_TBLEMPLEADO" FromRole="TBLSEGURIDAD" ToRole="TBLEMPLEADO" />
+        </EntityType>
+        <Association Name="FK__TBLPRODUC__IdCat__440B1D61">
+          <End Role="TBLCATEGORIA_PROD" Type="Self.TBLCATEGORIA_PROD" Multiplicity="1" />
+          <End Role="TBLPRODUCTO" Type="Self.TBLPRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCATEGORIA_PROD">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="TBLPRODUCTO">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLFACTURA_TBLCLIENTES">
+          <End Role="TBLCLIENTES" Type="Self.TBLCLIENTES" Multiplicity="1" />
+          <End Role="TBLFACTURA" Type="Self.TBLFACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCLIENTES">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="TBLFACTURA">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLDETALLE_FACTURA_TBLFACTURA">
+          <End Role="TBLFACTURA" Type="Self.TBLFACTURA" Multiplicity="1" />
+          <End Role="TBLDETALLE_FACTURA" Type="Self.TBLDETALLE_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLFACTURA">
+              <PropertyRef Name="IdFactura" />
+            </Principal>
+            <Dependent Role="TBLDETALLE_FACTURA">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLDETALLE_FACTURA_TBLPRODUCTO">
+          <End Role="TBLPRODUCTO" Type="Self.TBLPRODUCTO" Multiplicity="1" />
+          <End Role="TBLDETALLE_FACTURA" Type="Self.TBLDETALLE_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLPRODUCTO">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="TBLDETALLE_FACTURA">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLEMPLEADO_TBLROLES">
+          <End Role="TBLROLES" Type="Self.TBLROLES" Multiplicity="0..1" />
+          <End Role="TBLEMPLEADO" Type="Self.TBLEMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLROLES">
+              <PropertyRef Name="IdRolEmpleado" />
+            </Principal>
+            <Dependent Role="TBLEMPLEADO">
+              <PropertyRef Name="IdRolEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLFACTURA_TBLEMPLEADO">
+          <End Role="TBLEMPLEADO" Type="Self.TBLEMPLEADO" Multiplicity="1" />
+          <End Role="TBLFACTURA" Type="Self.TBLFACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLEMPLEADO">
+              <PropertyRef Name="IdEmpleado" />
+            </Principal>
+            <Dependent Role="TBLFACTURA">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSEGURIDAD_TBLEMPLEADO">
+          <End Role="TBLEMPLEADO" Type="Self.TBLEMPLEADO" Multiplicity="1" />
+          <End Role="TBLSEGURIDAD" Type="Self.TBLSEGURIDAD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLEMPLEADO">
+              <PropertyRef Name="IdEmpleado" />
+            </Principal>
+            <Dependent Role="TBLSEGURIDAD">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLFACTURA_TBLESTADO_FACTURA">
+          <End Role="TBLESTADO_FACTURA" Type="Self.TBLESTADO_FACTURA" Multiplicity="0..1" />
+          <End Role="TBLFACTURA" Type="Self.TBLFACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLESTADO_FACTURA">
+              <PropertyRef Name="IdEstadoFactura" />
+            </Principal>
+            <Dependent Role="TBLFACTURA">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBFacturacion" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBLCATEGORIA_PROD" EntityType="Self.TBLCATEGORIA_PROD" />
+          <EntitySet Name="TBLCLIENTES" EntityType="Self.TBLCLIENTES" />
+          <EntitySet Name="TBLDETALLE_FACTURA" EntityType="Self.TBLDETALLE_FACTURA" />
+          <EntitySet Name="TBLEMPLEADO" EntityType="Self.TBLEMPLEADO" />
+          <EntitySet Name="TBLESTADO_FACTURA" EntityType="Self.TBLESTADO_FACTURA" />
+          <EntitySet Name="TBLFACTURA" EntityType="Self.TBLFACTURA" />
+          <EntitySet Name="TBLPRODUCTO" EntityType="Self.TBLPRODUCTO" />
+          <EntitySet Name="TBLROLES" EntityType="Self.TBLROLES" />
+          <EntitySet Name="TBLSEGURIDAD" EntityType="Self.TBLSEGURIDAD" />
+          <AssociationSet Name="FK__TBLPRODUC__IdCat__440B1D61" Association="Self.FK__TBLPRODUC__IdCat__440B1D61">
+            <End Role="TBLCATEGORIA_PROD" EntitySet="TBLCATEGORIA_PROD" />
+            <End Role="TBLPRODUCTO" EntitySet="TBLPRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLFACTURA_TBLCLIENTES" Association="Self.FK_TBLFACTURA_TBLCLIENTES">
+            <End Role="TBLCLIENTES" EntitySet="TBLCLIENTES" />
+            <End Role="TBLFACTURA" EntitySet="TBLFACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLDETALLE_FACTURA_TBLFACTURA" Association="Self.FK_TBLDETALLE_FACTURA_TBLFACTURA">
+            <End Role="TBLFACTURA" EntitySet="TBLFACTURA" />
+            <End Role="TBLDETALLE_FACTURA" EntitySet="TBLDETALLE_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLDETALLE_FACTURA_TBLPRODUCTO" Association="Self.FK_TBLDETALLE_FACTURA_TBLPRODUCTO">
+            <End Role="TBLPRODUCTO" EntitySet="TBLPRODUCTO" />
+            <End Role="TBLDETALLE_FACTURA" EntitySet="TBLDETALLE_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLEMPLEADO_TBLROLES" Association="Self.FK_TBLEMPLEADO_TBLROLES">
+            <End Role="TBLROLES" EntitySet="TBLROLES" />
+            <End Role="TBLEMPLEADO" EntitySet="TBLEMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLFACTURA_TBLEMPLEADO" Association="Self.FK_TBLFACTURA_TBLEMPLEADO">
+            <End Role="TBLEMPLEADO" EntitySet="TBLEMPLEADO" />
+            <End Role="TBLFACTURA" EntitySet="TBLFACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSEGURIDAD_TBLEMPLEADO" Association="Self.FK_TBLSEGURIDAD_TBLEMPLEADO">
+            <End Role="TBLEMPLEADO" EntitySet="TBLEMPLEADO" />
+            <End Role="TBLSEGURIDAD" EntitySet="TBLSEGURIDAD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLFACTURA_TBLESTADO_FACTURA" Association="Self.FK_TBLFACTURA_TBLESTADO_FACTURA">
+            <End Role="TBLESTADO_FACTURA" EntitySet="TBLESTADO_FACTURA" />
+            <End Role="TBLFACTURA" EntitySet="TBLFACTURA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelFacturasStoreContainer" CdmEntityContainer="DBFacturacion">
+          <EntitySetMapping Name="TBLCATEGORIA_PROD">
+            <EntityTypeMapping TypeName="ModelFacturas.TBLCATEGORIA_PROD">
+              <MappingFragment StoreEntitySet="TBLCATEGORIA_PROD">
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="StrDescripcion" ColumnName="StrDescripcion" />
+                <ScalarProperty Name="DtmFechaModifica" ColumnName="DtmFechaModifica" />
+                <ScalarProperty Name="StrUsuarioModifico" ColumnName="StrUsuarioModifico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLCLIENTES">
+            <EntityTypeMapping TypeName="ModelFacturas.TBLCLIENTES">
+              <MappingFragment StoreEntitySet="TBLCLIENTES">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="StrNombre" ColumnName="StrNombre" />
+                <ScalarProperty Name="NumDocumento" ColumnName="NumDocumento" />
+                <ScalarProperty Name="StrDireccion" ColumnName="StrDireccion" />
+                <ScalarProperty Name="StrTelefono" ColumnName="StrTelefono" />
+                <ScalarProperty Name="StrEmail" ColumnName="StrEmail" />
+                <ScalarProperty Name="DtmFechaModifica" ColumnName="DtmFechaModifica" />
+                <ScalarProperty Name="StrUsuarioModifica" ColumnName="StrUsuarioModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLDETALLE_FACTURA">
+            <EntityTypeMapping TypeName="ModelFacturas.TBLDETALLE_FACTURA">
+              <MappingFragment StoreEntitySet="TBLDETALLE_FACTURA">
+                <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="NumCantidad" ColumnName="NumCantidad" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NumPrecio" ColumnName="NumPrecio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLEMPLEADO">
+            <EntityTypeMapping TypeName="ModelFacturas.TBLEMPLEADO">
+              <MappingFragment StoreEntitySet="TBLEMPLEADO">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="strNombre" ColumnName="strNombre" />
+                <ScalarProperty Name="NumDocumento" ColumnName="NumDocumento" />
+                <ScalarProperty Name="StrDireccion" ColumnName="StrDireccion" />
+                <ScalarProperty Name="StrTelefono" ColumnName="StrTelefono" />
+                <ScalarProperty Name="StrEmail" ColumnName="StrEmail" />
+                <ScalarProperty Name="IdRolEmpleado" ColumnName="IdRolEmpleado" />
+                <ScalarProperty Name="DtmIngreso" ColumnName="DtmIngreso" />
+                <ScalarProperty Name="DtmRetiro" ColumnName="DtmRetiro" />
+                <ScalarProperty Name="strDatosAdicionales" ColumnName="strDatosAdicionales" />
+                <ScalarProperty Name="DtmFechaModifica" ColumnName="DtmFechaModifica" />
+                <ScalarProperty Name="StrUsuarioModifico" ColumnName="StrUsuarioModifico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLESTADO_FACTURA">
+            <EntityTypeMapping TypeName="ModelFacturas.TBLESTADO_FACTURA">
+              <MappingFragment StoreEntitySet="TBLESTADO_FACTURA">
+                <ScalarProperty Name="IdEstadoFactura" ColumnName="IdEstadoFactura" />
+                <ScalarProperty Name="StrDescripcion" ColumnName="StrDescripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLFACTURA">
+            <EntityTypeMapping TypeName="ModelFacturas.TBLFACTURA">
+              <MappingFragment StoreEntitySet="TBLFACTURA">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="DtmFecha" ColumnName="DtmFecha" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="NumDescuento" ColumnName="NumDescuento" />
+                <ScalarProperty Name="NumImpuesto" ColumnName="NumImpuesto" />
+                <ScalarProperty Name="NumValorTotal" ColumnName="NumValorTotal" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="DtmFechaModifica" ColumnName="DtmFechaModifica" />
+                <ScalarProperty Name="StrUsuarioModifica" ColumnName="StrUsuarioModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLPRODUCTO">
+            <EntityTypeMapping TypeName="ModelFacturas.TBLPRODUCTO">
+              <MappingFragment StoreEntitySet="TBLPRODUCTO">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="StrNombre" ColumnName="StrNombre" />
+                <ScalarProperty Name="StrCodigo" ColumnName="StrCodigo" />
+                <ScalarProperty Name="NumPrecioCompra" ColumnName="NumPrecioCompra" />
+                <ScalarProperty Name="NumPrecioVenta" ColumnName="NumPrecioVenta" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="StrDetalle" ColumnName="StrDetalle" />
+                <ScalarProperty Name="strFoto" ColumnName="strFoto" />
+                <ScalarProperty Name="NumStock" ColumnName="NumStock" />
+                <ScalarProperty Name="DtmFechaModifica" ColumnName="DtmFechaModifica" />
+                <ScalarProperty Name="StrUsuarioModifica" ColumnName="StrUsuarioModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLROLES">
+            <EntityTypeMapping TypeName="ModelFacturas.TBLROLES">
+              <MappingFragment StoreEntitySet="TBLROLES">
+                <ScalarProperty Name="IdRolEmpleado" ColumnName="IdRolEmpleado" />
+                <ScalarProperty Name="StrDescripcion" ColumnName="StrDescripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLSEGURIDAD">
+            <EntityTypeMapping TypeName="ModelFacturas.TBLSEGURIDAD">
+              <MappingFragment StoreEntitySet="TBLSEGURIDAD">
+                <ScalarProperty Name="IdSeguridad" ColumnName="IdSeguridad" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="StrUsuario" ColumnName="StrUsuario" />
+                <ScalarProperty Name="StrClave" ColumnName="StrClave" />
+                <ScalarProperty Name="DtmFechaModifica" ColumnName="DtmFechaModifica" />
+                <ScalarProperty Name="StrUsuarioModifico" ColumnName="StrUsuarioModifico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

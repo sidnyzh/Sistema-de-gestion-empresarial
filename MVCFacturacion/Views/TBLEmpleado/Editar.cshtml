@@ -1,0 +1,21 @@
+﻿@model MVCFacturacion.Models.TBLEMPLEADO
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutFacturacion.cshtml";
+}
+
+<h2 class="well">Editar</h2>
+
+@using (Html.BeginForm("Editar", "TBLEmpleado", FormMethod.Post))
+{
+    @Html.HiddenFor(d => d.IdEmpleado)
+
+    <p>@Html.LabelFor(d => d.strNombre): @Html.TextBoxFor(d => d.strNombre)</p>
+    <p>@Html.LabelFor(d => d.NumDocumento): @Html.TextBoxFor(d => d.NumDocumento)</p>
+    <p>@Html.LabelFor(d => d.StrDireccion): @Html.TextBoxFor(d => d.StrDireccion)</p>
+    <p>@Html.LabelFor(d => d.StrTelefono): @Html.TextBoxFor(d => d.StrTelefono)</p>
+    <p>@Html.LabelFor(d => d.StrEmail): @Html.TextBoxFor(d => d.StrEmail)</p>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+}
