@@ -1,0 +1,22 @@
+﻿@model MVCFacturacion.Models.TBLPRODUCTO
+@{
+    ViewBag.Title = "Nuevo Producto";
+    Layout = "~/Views/Shared/_LayoutFacturacion.cshtml";
+}
+
+<h2 class="well">Ingreso Producto</h2>
+
+@using (Html.BeginForm("Nuevo", "TBLProductos", FormMethod.Post))
+{
+    <p>@Html.LabelFor(d => d.StrNombre): @Html.TextBoxFor(d => d.StrNombre)</p>
+    <p>@Html.LabelFor(d => d.StrCodigo): @Html.TextBoxFor(d => d.StrCodigo)</p>
+    <p>@Html.LabelFor(d => d.NumPrecioCompra): @Html.TextBoxFor(d => d.NumPrecioCompra)</p>
+    <p>@Html.LabelFor(d => d.NumPrecioVenta): @Html.TextBoxFor(d => d.NumPrecioVenta)</p>
+    <p>@Html.LabelFor(d => d.IdCategoria): @Html.DropDownListFor(d => d.IdCategoria, ViewBag.IdCategoria as SelectList, "-- Seleccione --")</p>
+    <p>@Html.LabelFor(d => d.NumStock): @Html.TextBoxFor(d => d.NumStock)</p>
+    <p>@Html.LabelFor(d => d.StrDetalle):<br />@Html.TextAreaFor(d => d.StrDetalle)</p>
+    <p>@Html.LabelFor(d => d.strFoto): @Html.TextBoxFor(d => d.strFoto)</p>
+
+    <input type="submit" value="Guardar" class="btn btn-success" />
+    <a class="btn btn-primary" href="~/TBLProductos">Retornar</a>
+}

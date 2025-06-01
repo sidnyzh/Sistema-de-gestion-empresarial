@@ -1,0 +1,16 @@
+﻿@model MVCFacturacion.Models.TBLCLIENTES
+@{
+    ViewBag.Title = "Editar Cliente";
+    Layout = "~/Views/Shared/_LayoutFacturacion.cshtml";
+}
+<h2 class="well">Editar Cliente</h2>
+@using (Html.BeginForm("Editar", "TBLClientes", FormMethod.Post))
+{
+    @Html.HiddenFor(d => d.IdCliente)
+    <p>@Html.LabelFor(d => d.StrNombre): @Html.TextBoxFor(d => d.StrNombre)</p>
+    <p>@Html.LabelFor(d => d.NumDocumento): @Html.TextBoxFor(d => d.NumDocumento)</p>
+    <p>@Html.LabelFor(d => d.StrDireccion): @Html.TextBoxFor(d => d.StrDireccion)</p>
+    <p>@Html.LabelFor(d => d.StrTelefono): @Html.TextBoxFor(d => d.StrTelefono)</p>
+    <p>@Html.LabelFor(d => d.StrEmail): @Html.TextBoxFor(d => d.StrEmail)</p>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+}

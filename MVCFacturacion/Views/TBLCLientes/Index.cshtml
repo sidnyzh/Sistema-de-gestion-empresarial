@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MVCFacturacion.Models.TBLCLIENTES>
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_LayoutFacturacion.cshtml";
+}
+
+<h2>ADMON CLIENTES</h2>
+<div class="well">
+    <a href="~/TBLClientes/Nuevo" class="btn btn-primary">+Nuevo</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.StrNombre</td>
+                <td>@item.NumDocumento</td>
+                <td>@item.StrTelefono</td>
+                <td>@item.StrEmail</td>
+                <td>
+                    <a href="~/TBLClientes/Editar/@item.IdCliente" class="btn btn-info">Editar</a>
+                    <a href="~/TBLClientes/Borrar/@item.IdCliente" class="btn btn-danger">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

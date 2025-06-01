@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MVCFacturacion.Models.TBLPRODUCTO>
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_LayoutFacturacion.cshtml";
+}
+
+<h2>ADMIN PRODUCTOS</h2>
+<div class="well">
+    <a href="~/TBLProductos/Nuevo" class="btn btn-primary">+Nuevo</a>
+</div>
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Código</th>
+        <th>Precio Compra</th>
+        <th>Precio Venta</th>
+        <th>Stock</th>
+        <th>Categoría</th>
+        <th>ACCIONES</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.StrNombre</td>
+            <td>@item.StrCodigo</td>
+            <td>@item.NumPrecioCompra</td>
+            <td>@item.NumPrecioVenta</td>
+            <td>@item.NumStock</td>
+            <td>@(item.TBLCATEGORIA_PROD != null ? item.TBLCATEGORIA_PROD.StrDescripcion : "Sin categoría")</td>
+            <td>
+                <a href="~/TBLProductos/Editar/@item.IdProducto" class="btn btn-info">Editar</a>
+                <a href="~/TBLProductos/Borrar/@item.IdProducto" class="btn btn-danger">Borrar</a>
+            </td>
+        </tr>
+    }
+</table>
